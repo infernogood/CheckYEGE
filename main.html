@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <title>Проверить результаты ЕГЭ / Официальный информационный портал единого государственного экзамена (ЕГЭ 2026)</title>
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            font-size: 14px;
+            font-family: Verdana, Arial, Helvetica, sans-serif;
+            background-color: #d2d8ee;
+            background-image: linear-gradient(to bottom, #e6eaf6, #d2d8ee);
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            color: #000;
+        }
+        
+        .page {
+            min-height: 100%;
+            width: 1000px;
+            margin: 0 auto;
+            padding-bottom: 180px;
+            background: #fff;
+            position: relative;
+            box-shadow: 0 0 30px rgba(0,0,0,.3);
+            box-sizing: border-box;
+        }
+
+        header {
+            height: 188px;
+            position: relative;
+        }
+
+        .header_bar {
+            position: absolute;
+            left: 0;
+            right: 0;
+            height: 38px;
+            top: 0;
+            background: #f2f2f2;
+        }
+
+        .header_content {
+            position: absolute;
+            left: 0;
+            right: 0;
+            height: 150px;
+            top: 38px;
+        }
+
+        .header_logo {
+            width: 138px;
+            height: 50px;
+            position: absolute;
+            left: 30px;
+            top: 45px;
+            cursor: pointer;
+            background: url(data:image/gif;base64,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) no-repeat;
+        }
+
+        .header_text {
+            position: absolute;
+            left: 210px;
+            top: 40px;
+            line-height: 32px;
+            font-size: 24px;
+            font-family: Calibri, Helvetica, sans-serif;
+        }
+
+        .header_text-1 {
+            color: #949699;
+            text-transform: uppercase;
+        }
+
+        .header_text-2 {
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .content {
+            padding: 20px 32px;
+            border-top: 1px solid #bebfc1;
+        }
+
+        .account-block {
+            float: right;
+            font-size: 22px;
+        }
+
+        .account-block a {
+            font-size: 24px;
+            color: #0071bb;
+            text-decoration: none;
+            margin-left: 10px;
+        }
+
+        .account-block a:hover {
+            color: #00436e;
+        }
+
+        h3 {
+            font-family: Calibri, Helvetica, sans-serif;
+            font-size: 22px;
+            font-weight: bold;
+            margin-top: 0;
+            margin-bottom: 22px;
+        }
+
+        .mb-20 {
+            margin-bottom: 20px;
+        }
+
+        .mb-15 {
+            margin-bottom: 15px;
+        }
+
+        .mb-10 {
+            margin-bottom: 10px;
+        }
+
+        a {
+            color: #0071bb;
+            text-decoration: none;
+        }
+
+        a:hover {
+            color: #00436e;
+        }
+
+        .table-container {
+            position: relative;
+            overflow: auto;
+            width: 100%;
+            min-height: 100px;
+            text-align: center;
+        }
+
+        .table {
+            width: 100%;
+            table-layout: fixed;
+            border-collapse: collapse;
+            font-size: 13px;
+            margin-bottom: 20px;
+        }
+
+        .table td, .table th {
+            border: 1px solid #C2C2C2;
+            text-align: center;
+            vertical-align: middle;
+            padding: 11px;
+        }
+
+        .table th {
+            font-weight: bold;
+            padding: 8px 11px;
+            background-color: #dae1f7;
+        }
+
+        .table tr.odd {
+            background: #f2f2f2;
+        }
+
+        .table tr:hover td {
+            background: #dadada;
+        }
+
+        .bold {
+            font-weight: bold;
+        }
+
+        .green {
+            color: green;
+        }
+
+        .red {
+            color: red;
+        }
+
+        p {
+            font-size: 11px;
+            line-height: 1.5;
+            margin: 0;
+        }
+
+        p.red {
+            color: red;
+        }
+
+        footer {
+            position: absolute;
+            background: #f2f2f2;
+            height: 150px;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-top: 1px solid #d5d6d6;
+            font-size: 12px;
+            text-align: center;
+            box-sizing: border-box;
+            padding-top: 18px;
+            color: #949699;
+        }
+
+        .notice {
+            width: 100%;
+            font-size: 12px;
+            background-color: #fff0f0;
+            color: #C31612;
+            padding: 15px;
+            line-height: 1.5;
+            border: 1px solid #ef504c;
+            box-sizing: border-box;
+            text-align: left;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+    </style>
+</head>
+<body>
+
+<div class="page">
+    <header>
+        <div class="header_bar"></div>
+        <div class="header_content">
+            <div class="header_logo" onclick="showPage('list')"></div>
+            <div class="header_text">
+                <div class="header_text-1 font-sans">Официальный информационный портал</div>
+                <div class="header_text-2 font-sans">Единого государственного экзамена</div>	
+            </div>
+        </div>
+    </header>
+
+    <div class="content">
+        <!-- PAGE 1: EXAM LIST -->
+        <div id="page-list">
+            <div class="account-block">
+                <span>Кино А.В.</span>
+                <a href="#" id="logout">Выход</a>
+            </div>
+            <h3>Ваши результаты ЕГЭ</h3>
+            
+            <div class="mb-20">
+                <a href="https://obrnadzor.gov.ru/gia/gia-11/raspisanie-gia-11/" target="_blank">График публикации результатов экзаменов</a>
+            </div>
+
+            <div class="table-container mb-20">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th style="width: 110px;">Дата экзамена</th>
+                            <th>Предмет</th>
+                            <th style="width: 110px;">Тестовый балл</th>
+                            <th style="width: 110px;">Минимальный балл</th>
+                            <th>Статус экзамена</th>
+                            <th style="width: 110px;">Апелляция</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="odd">
+                            <td>03.12.2025</td>
+                            <td>Сочинение</td>
+                            <td></td>
+                            <td></td>
+                            <td>Нет результата</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>04.02.2026</td>
+                            <td><a href="#" onclick="showPage('180')">Сочинение</a></td>
+                            <td><span class="bold green">зачёт</span></td>
+                            <td></td>
+                            <td>Оценённый результат</td>
+                            <td>нет</td>
+                        </tr>
+                        <tr class="odd">
+                            <td>04.06.2026</td>
+                            <td><a href="#" onclick="showPage('21')">Русский язык</a></td>
+                            <td><span class="bold red">17</span></td>
+                            <td>24</td>
+                            <td>Оценённый результат</td>
+                            <td>нет</td>
+                        </tr>
+                        <tr>
+                            <td>08.06.2026</td>
+                            <td><a href="#" onclick="showPage('24')">Математика профильная</a></td>
+                            <td><span class="bold red">22</span></td>
+                            <td>27</td>
+                            <td>Оценённый результат</td>
+                            <td>нет</td>
+                        </tr>
+                        <tr class="odd">
+                            <td>18.06.2026</td>
+                            <td>Информатика (КЕГЭ)</td>
+                            <td></td>
+                            <td></td>
+                            <td>Нет результата</td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <p class="red">Внимание!</p>
+            <p class="mb-15">
+                В случае если:<br>
+                — напротив предмета установлен статус «Результат скрыт»<br>
+                — напротив предмета установлен статус «Экзамен обработан» и при этом значение тестового балла пустое <br>
+                Вам необходимо обратиться в РЦОИ Вашего региона для получения результатов.
+            </p>
+            <p class="red">
+                Обращаем Ваше внимание, что результаты ЕГЭ могут быть изменены в&nbsp;связи с&nbsp;проведением процедур апелляции и/или&nbsp;перепроверок результатов на&nbsp;региональном и&nbsp;федеральном уровнях. Рекомендуем осуществлять периодические повторные проверки Ваших результатов ЕГЭ.
+            </p>
+        </div>
+
+        <!-- PAGE 2: DETAILS RUSSIAN (ID: 21) -->
+        <div id="page-21" class="hidden">
+            <div class="account-block">
+                <span>Кино А.В.</span>
+                <a href="#" onclick="showPage('list')">Все экзамены</a>
+            </div>
+            <h3>Результаты экзамена: Русский язык</h3>
+            
+            <div class="mb-20">
+                <p class="bold" style="font-size: 13px;">Дата экзамена: 04.06.2026</p>
+                <p style="font-size: 13px;">
+                    Ваш первичный балл: <span class="bold">7</span><br>
+                    Ваш тестовый балл: <span class="bold red">17</span><br>
+                    Минимальный балл: 24
+                </p>
+            </div>
+
+            <div class="mb-20">
+                <span class="bold" style="font-size: 13px;">Бланки ответов:</span>
+                <div style="margin-top: 5px;">
+                    <a href="#" class="mb-10" style="display:block; font-size:12px;">Бланк ответов №1.</a>
+                    <a href="#" class="mb-10" style="display:block; font-size:12px;">Бланк ответов №2. Страница 1.</a>
+                    <a href="#" class="mb-10" style="display:block; font-size:12px;">Бланк ответов №2. Страница 2.</a>
+                </div>
+            </div>
+
+            <div class="mb-20">
+                <span class="bold" style="font-size: 13px;">Ответы на задания:</span>
+            </div>
+
+            <div class="notice mb-20">
+                Подробную информацию по критериям оценивания смотрите в спецификации КИМ на <a href="https://fipi.ru/" target="_blank">сайте ФИПИ</a>
+            </div>
+
+            <div class="table-container mb-20">
+                <table class="table" style="font-size: 12px;">
+                    <thead>
+                        <tr>
+                            <th colspan="5">Результаты выполнения заданий с кратким ответом</th>
+                        </tr>
+                        <tr style="background-color: #f2f2f2;">
+                            <th style="width: 50px;">№</th>
+                            <th>Ваш ответ</th>
+                            <th>Допустимые символы</th>
+                            <th style="width: 100px;">Ваш балл*</th>
+                            <th style="width: 150px;">Максимальный балл*</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="odd"><td>1</td><td style="text-align:left;">сам</td><td style="text-align:left;">Кириллица, дефисы</td><td>1</td><td>1</td></tr>
+                        <tr><td>2</td><td style="text-align:left;">145</td><td style="text-align:left;">Цифры</td><td>1</td><td>1</td></tr>
+                        <tr class="odd"><td>3</td><td style="text-align:left;">23</td><td style="text-align:left;">Цифры</td><td>0</td><td>1</td></tr>
+                        <tr><td>4</td><td style="text-align:left;">13</td><td style="text-align:left;">Цифры</td><td>0</td><td>1</td></tr>
+                        <tr class="odd"><td>5</td><td style="text-align:left;">жилая</td><td style="text-align:left;">Кириллица, дефисы</td><td>1</td><td>1</td></tr>
+                        <tr><td>6</td><td style="text-align:left;">короткое</td><td style="text-align:left;">Кириллица, дефисы</td><td>1</td><td>1</td></tr>
+                        <tr class="odd"><td>7</td><td style="text-align:left;">наложить</td><td style="text-align:left;">Кириллица, дефисы</td><td>1</td><td>1</td></tr>
+                        <tr><td>8</td><td style="text-align:left;">58317</td><td style="text-align:left;">Цифры</td><td>0</td><td>2</td></tr>
+                        <tr class="odd"><td>9</td><td style="text-align:left;">134</td><td style="text-align:left;">Цифры</td><td>1</td><td>1</td></tr>
+                        <tr><td>10</td><td style="text-align:left;">45</td><td style="text-align:left;">Цифры</td><td>1</td><td>1</td></tr>
+                        <tr class="odd"><td>11</td><td style="text-align:left;">23</td><td style="text-align:left;">Цифры</td><td>0</td><td>1</td></tr>
+                        <tr><td>12</td><td style="text-align:left;">245</td><td style="text-align:left;">Цифры</td><td>0</td><td>1</td></tr>
+                        <tr class="odd"><td>13</td><td style="text-align:left;">145</td><td style="text-align:left;">Цифры</td><td>0</td><td>1</td></tr>
+                        <tr><td>14</td><td style="text-align:left;">13</td><td style="text-align:left;">Цифры</td><td>0</td><td>1</td></tr>
+                        <tr class="odd"><td>15</td><td style="text-align:left;">134</td><td style="text-align:left;">Цифры</td><td>0</td><td>1</td></tr>
+                        <tr><td>16</td><td style="text-align:left;">13</td><td style="text-align:left;">Цифры</td><td>0</td><td>1</td></tr>
+                        <tr class="odd"><td>17</td><td style="text-align:left;">3</td><td style="text-align:left;">Цифры</td><td>0</td><td>1</td></tr>
+                        <tr><td>18</td><td style="text-align:left;">12</td><td style="text-align:left;">Цифры</td><td>0</td><td>1</td></tr>
+                        <tr class="odd"><td>19</td><td style="text-align:left;">1235</td><td style="text-align:left;">Цифры</td><td>0</td><td>1</td></tr>
+                        <tr><td>20</td><td style="text-align:left;">124</td><td style="text-align:left;">Цифры</td><td>0</td><td>1</td></tr>
+                        <tr class="odd"><td>21</td><td style="text-align:left;">38</td><td style="text-align:left;">Цифры</td><td>0</td><td>1</td></tr>
+                        <tr><td>22</td><td style="text-align:left;">14938</td><td style="text-align:left;">Цифры</td><td>0</td><td>2</td></tr>
+                        <tr class="odd"><td>23</td><td style="text-align:left;">135</td><td style="text-align:left;">Цифры</td><td>0</td><td>1</td></tr>
+                        <tr><td>24</td><td style="text-align:left;">145</td><td style="text-align:left;">Цифры</td><td>0</td><td>1</td></tr>
+                        <tr class="odd"><td>25</td><td style="text-align:left;">силаслабость</td><td style="text-align:left;">Кириллица, дефисы</td><td>0</td><td>1</td></tr>
+                        <tr><td>26</td><td style="text-align:left;">9</td><td style="text-align:left;">Цифры</td><td>0</td><td>1</td></tr>
+                    </tbody>
+                    <tfoot>
+                        <tr style="background-color: #dae1f7; font-weight: bold;">
+                            <td colspan="3" style="text-align: right;">Итого</td>
+                            <td>7</td>
+                            <td>28</td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+
+        <!-- PAGE 3: DETAILS MATH (ID: 24) -->
+        <div id="page-24" class="hidden">
+            <div class="account-block">
+                <span>Кино А.В.</span>
+                <a href="#" onclick="showPage('list')">Все экзамены</a>
+            </div>
+            <h3>Результаты экзамена: Математика профильная</h3>
+            
+            <div class="mb-20">
+                <p class="bold" style="font-size: 13px;">Дата экзамена: 08.06.2026</p>
+                <p style="font-size: 13px;">
+                    Ваш первичный балл: <span class="bold">4</span><br>
+                    Ваш тестовый балл: <span class="bold red">22</span><br>
+                    Минимальный балл: 27
+                </p>
+            </div>
+
+            <div class="mb-20">
+                <span class="bold" style="font-size: 13px;">Бланки ответов:</span>
+                <div style="margin-top: 5px;">
+                    <a href="#" class="mb-10" style="display:block; font-size:12px;">Бланк ответов №1.</a>
+                    <a href="#" class="mb-10" style="display:block; font-size:12px;">Бланк ответов №2. Страница 1.</a>
+                </div>
+            </div>
+
+            <div class="mb-20">
+                <span class="bold" style="font-size: 13px;">Ответы на задания:</span>
+            </div>
+
+            <div class="notice mb-20">
+                Подробную информацию по критериям оценивания смотрите в спецификации КИМ на <a href="https://fipi.ru/" target="_blank">сайте ФИПИ</a>
+            </div>
+
+            <!-- Math Table 1: Short Answers (1-12) -->
+            <div class="table-container mb-20">
+                <table class="table" style="font-size: 12px; margin-bottom: 25px;">
+                    <thead>
+                        <tr>
+                            <th colspan="5">Результаты выполнения заданий с кратким ответом</th>
+                        </tr>
+                        <tr style="background-color: #f2f2f2;">
+                            <th style="width: 50px;">№</th>
+                            <th>Ваш ответ</th>
+                            <th>Допустимые символы</th>
+                            <th style="width: 100px;">Ваш балл*</th>
+                            <th style="width: 150px;">Максимальный балл*</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="odd"><td>1</td><td style="text-align:left;">7</td><td style="text-align:left;">Цифры, минус, запятая</td><td>1</td><td>1</td></tr>
+                        <tr><td>2</td><td style="text-align:left;">20</td><td style="text-align:left;">Цифры, минус, запятая</td><td>1</td><td>1</td></tr>
+                        <tr class="odd"><td>3</td><td style="text-align:left;">24</td><td style="text-align:left;">Цифры, минус, запятая</td><td>1</td><td>1</td></tr>
+                        <tr><td>4</td><td style="text-align:left;">0,3</td><td style="text-align:left;">Цифры, минус, запятая</td><td>1</td><td>1</td></tr>
+                        <tr class="odd"><td>5</td><td style="text-align:left;">0,15</td><td style="text-align:left;">Цифры, минус, запятая</td><td>0</td><td>1</td></tr>
+                        <tr><td>6</td><td style="text-align:left;">6</td><td style="text-align:left;">Цифры, минус, запятая</td><td>0</td><td>1</td></tr>
+                        <tr class="odd"><td>7</td><td style="text-align:left;">4</td><td style="text-align:left;">Цифры, минус, запятая</td><td>0</td><td>1</td></tr>
+                        <tr><td>8</td><td style="text-align:left;">3</td><td style="text-align:left;">Цифры, минус, запятая</td><td>0</td><td>1</td></tr>
+                        <tr class="odd"><td>9</td><td style="text-align:left;">7</td><td style="text-align:left;">Цифры, минус, запятая</td><td>0</td><td>1</td></tr>
+                        <tr><td>10</td><td style="text-align:left;">15</td><td style="text-align:left;">Цифры, минус, запятая</td><td>0</td><td>1</td></tr>
+                        <tr class="odd"><td>11</td><td style="text-align:left;">18</td><td style="text-align:left;">Цифры, минус, запятая</td><td>0</td><td>1</td></tr>
+                        <tr><td>12</td><td style="text-align:left;">144</td><td style="text-align:left;">Цифры, минус, запятая</td><td>0</td><td>1</td></tr>
+                    </tbody>
+                    <tfoot>
+                        <tr style="background-color: #dae1f7; font-weight: bold;">
+                            <td colspan="3" style="text-align: right;">Итого</td>
+                            <td>4</td>
+                            <td>12</td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+
+            <!-- Math Table 2: Extended Answers (13-19) -->
+            <div class="table-container mb-20">
+                <table class="table" style="font-size: 12px;">
+                    <thead>
+                        <tr>
+                            <th colspan="4">Результаты выполнения заданий с развёрнутым ответом</th>
+                        </tr>
+                        <tr style="background-color: #f2f2f2;">
+                            <th style="width: 50px;">№</th>
+                            <th>Критерии**</th>
+                            <th style="width: 100px;">Ваш балл*</th>
+                            <th style="width: 150px;">Максимальный балл*</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="odd"><td>13</td><td></td><td>0</td><td>2</td></tr>
+                        <tr><td>14</td><td></td><td>0</td><td>3</td></tr>
+                        <tr class="odd"><td>15</td><td></td><td>0</td><td>2</td></tr>
+                        <tr><td>16</td><td></td><td>0</td><td>2</td></tr>
+                        <tr class="odd"><td>17</td><td></td><td>0</td><td>3</td></tr>
+                        <tr><td>18</td><td></td><td>0</td><td>4</td></tr>
+                        <tr class="odd"><td>19</td><td></td><td>0</td><td>4</td></tr>
+                    </tbody>
+                    <tfoot>
+                        <tr style="background-color: #dae1f7; font-weight: bold;">
+                            <td colspan="2" style="text-align: right;">Итого</td>
+                            <td>0</td>
+                            <td>20</td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+
+        <!-- PAGE 4: DETAILS WRITING (ID: 180) -->
+        <div id="page-180" class="hidden">
+            <div class="account-block">
+                <span>Кино А.В.</span>
+                <a href="#" onclick="showPage('list')">Все экзамены</a>
+            </div>
+            <h3>Результаты экзамена: Сочинение</h3>
+            
+            <div class="mb-20">
+                <p class="bold" style="font-size: 13px;">Дата экзамена: 04.02.2026</p>
+                <p style="font-size: 13px;">
+                    Результат: <span class="bold green">зачёт</span>
+                </p>
+            </div>
+
+            <div class="mb-20">
+                <span class="bold" style="font-size: 13px;">Бланки ответов:</span>
+                <div style="margin-top: 5px;">
+                    <a href="#" class="mb-10" style="display:block; font-size:12px;">Бланк ответов №1.</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div>
+            © 2001-<span>2026</span> Федеральная служба по надзору в сфере образования и науки
+        </div>
+        <div>
+            При использовании материалов портала ЕГЭ на внешних Интернет-ресурсах ссылка на <a href="http://obrnadzor.gov.ru/" target="_blank">первоисточник</a> обязательна
+        </div>
+    </footer>
+</div>
+
+<script>
+    function showPage(pageId) {
+        document.getElementById('page-list').classList.add('hidden');
+        document.getElementById('page-21').classList.add('hidden');
+        document.getElementById('page-24').classList.add('hidden');
+        document.getElementById('page-180').classList.add('hidden');
+
+        if (pageId === 'list') {
+            document.getElementById('page-list').classList.remove('hidden');
+        } else {
+            document.getElementById('page-' + pageId).classList.remove('hidden');
+        }
+        window.scrollTo(0, 0);
+    }
+</script>
+</body>
+</html>
